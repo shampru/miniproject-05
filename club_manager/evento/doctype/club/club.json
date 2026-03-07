@@ -1,0 +1,58 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-03-07 11:33:19.710769",
+ "custom": 1,
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "club_name",
+  "coordinator",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "club_name",
+   "fieldtype": "Data",
+   "label": "Club Name"
+  },
+  {
+   "fieldname": "coordinator",
+   "fieldtype": "Data",
+   "label": "Coordinator",
+   "options": "User"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-03-07 13:20:43.230388",
+ "modified_by": "riyashiju2005@gmail.com",
+ "module": "evento",
+ "name": "Club",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
