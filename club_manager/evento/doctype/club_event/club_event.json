@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "EVENT-.####",
  "creation": "2026-03-07 12:29:51.663130",
  "custom": 1,
  "doctype": "DocType",
@@ -43,10 +44,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-07 13:19:58.702458",
+ "modified": "2026-03-09 22:48:44.458441",
  "modified_by": "riyashiju2005@gmail.com",
  "module": "evento",
  "name": "Club Event",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

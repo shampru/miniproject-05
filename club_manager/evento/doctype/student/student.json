@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "STU-.####",
  "creation": "2026-03-07 12:09:01.165129",
  "custom": 1,
  "doctype": "DocType",
@@ -17,7 +18,8 @@
   {
    "fieldname": "student_name",
    "fieldtype": "Data",
-   "label": "Student Name"
+   "label": "Student Name",
+   "unique": 1
   },
   {
    "fieldname": "register_number",
@@ -50,10 +52,11 @@
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-07 13:20:25.576672",
+ "modified": "2026-03-09 22:47:46.389671",
  "modified_by": "riyashiju2005@gmail.com",
  "module": "evento",
  "name": "Student",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

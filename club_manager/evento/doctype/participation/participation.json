@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PART-.####",
  "creation": "2026-03-07 12:35:48.701323",
  "custom": 1,
  "doctype": "DocType",
@@ -9,7 +10,8 @@
   "student",
   "event",
   "role",
-  "participation_date"
+  "participation_date",
+  "attendence"
  ],
  "fields": [
   {
@@ -34,15 +36,22 @@
    "fieldname": "participation_date",
    "fieldtype": "Date",
    "label": "Participation Date"
+  },
+  {
+   "fieldname": "attendence",
+   "fieldtype": "Select",
+   "label": "Attendence",
+   "options": "Present\nAbsent"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-07 13:19:25.372428",
+ "modified": "2026-03-09 22:57:24.709030",
  "modified_by": "riyashiju2005@gmail.com",
  "module": "evento",
  "name": "Participation",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {
