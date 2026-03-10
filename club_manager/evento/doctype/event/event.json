@@ -1,0 +1,125 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-03-07 16:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "event_name",
+  "club",
+  "description",
+  "event_date",
+  "event_time",
+  "location",
+  "capacity",
+  "status",
+  "column_break_1",
+  "registered_count",
+  "sync_with_google_calendar"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Naming Series",
+   "options": "EVT-.YYYY.-.####.",
+   "default": "EVT-.YYYY.-.####."
+  },
+  {
+   "fieldname": "event_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Event Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "club",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Club",
+   "options": "Club"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "event_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Event Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "event_time",
+   "fieldtype": "Time",
+   "label": "Event Time"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Location"
+  },
+  {
+   "fieldname": "capacity",
+   "fieldtype": "Int",
+   "label": "Capacity",
+   "default": "100"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Upcoming\nOngoing\nCompleted\nCancelled",
+   "default": "Upcoming"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "registered_count",
+   "fieldtype": "Int",
+   "label": "Registered Count",
+   "read_only": 1,
+   "default": "0"
+  },
+  {
+   "fieldname": "sync_with_google_calendar",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Sync With Google Calendar",
+   "default": 0
+  }
+ ],
+ "links": [],
+ "modified": "2026-03-07 16:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "evento",
+ "name": "Event",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "event_date",
+ "sort_order": "DESC",
+ "title_field": "event_name",
+ "track_changes": 1
+}

@@ -57,7 +57,7 @@ app_license = "mit"
 # ----------
 
 # application home page (will override Website Settings)
-# home_page = "login"
+home_page = "club-manager-login"
 
 # website user home page (by Role)
 # role_home_page = {
@@ -85,8 +85,10 @@ app_license = "mit"
 # Installation
 # ------------
 
-# before_install = "club_manager.install.before_install"
-# after_install = "club_manager.install.after_install"
+after_install = "club_manager.install.after_install"
+
+# Migration (ensures Club Coordinator role and demo user roles are updated)
+after_migrate = "club_manager.install.after_migrate"
 
 # Uninstallation
 # ------------

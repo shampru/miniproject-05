@@ -1,0 +1,60 @@
+/* Club Manager Login — matches React Login.jsx */
+.cm-login-page{--primary:#4f46e5;--primary-hover:#4338ca;--primary-light:#eef2ff;--purple:#8b5cf6;--purple-light:#f5f3ff;--success:#10b981;--success-light:#ecfdf5;--gray-50:#f8fafc;--gray-200:#e2e8f0;--gray-400:#94a3b8;--gray-500:#64748b;--gray-600:#475569;--gray-800:#1e293b;--gray-900:#0f172a;--radius:8px;--radius-lg:12px;--radius-xl:16px;--shadow:0 1px 3px rgba(0,0,0,.1);--shadow-xl:0 20px 25px -5px rgba(0,0,0,.1);--transition:.2s ease}
+.cm-login-page{position:fixed;top:0;left:0;right:0;bottom:0;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:auto;background:#f0f2f8;z-index:100}
+.cm-login-page .bg-decoration{position:fixed;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden}
+.cm-login-page .bg-circle{position:absolute;border-radius:50%;background:linear-gradient(135deg,rgba(79,70,229,.08) 0%,rgba(139,92,246,.06) 100%);animation:float 20s ease-in-out infinite}
+.cm-login-page .bg-circle.c1{width:400px;height:400px;top:-100px;right:-100px}
+.cm-login-page .bg-circle.c2{width:300px;height:300px;bottom:-80px;left:-80px;animation-delay:-5s}
+.cm-login-page .bg-circle.c3{width:200px;height:200px;top:40%;left:10%;animation-delay:-10s}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,30px)}}
+.cm-login-page .login-wrapper{position:relative;z-index:1;display:flex;width:960px;max-width:95vw;min-height:620px;background:#fff;border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);overflow:hidden;animation:slideUp .5s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.cm-login-page .brand-panel{width:400px;background:linear-gradient(135deg,#1e293b 0%,#312e81 50%,#4f46e5 100%);color:#fff;display:flex;align-items:center;justify-content:center;padding:48px 40px;flex-shrink:0;position:relative;overflow:hidden}
+.cm-login-page .brand-panel::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:rgba(255,255,255,.05);top:-80px;right:-80px}
+.cm-login-page .brand-panel::after{content:'';position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.04);bottom:-40px;left:-40px}
+.cm-login-page .brand-content{position:relative;z-index:1}
+.cm-login-page .brand-logo{margin-bottom:28px}
+.cm-login-page .brand-icon{width:56px;height:56px;background:rgba(255,255,255,.15);border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:24px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);color:#fff}
+.cm-login-page .brand-icon.small{width:36px;height:36px;font-size:16px;background:var(--primary);border:none;border-radius:var(--radius)}
+.cm-login-page .brand-content h1{font-size:30px;font-weight:800;line-height:1.2;letter-spacing:-.03em;margin-bottom:12px}
+.cm-login-page .brand-content>p{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:36px}
+.cm-login-page .brand-features{display:flex;flex-direction:column;gap:16px}
+.cm-login-page .feature{display:flex;align-items:center;gap:12px;font-size:14px;color:rgba(255,255,255,.85);font-weight:500}
+.cm-login-page .feature svg{flex-shrink:0;opacity:.7}
+.cm-login-page .form-panel{flex:1;display:flex;align-items:center;justify-content:center;padding:40px;overflow-y:auto}
+.cm-login-page .form-container{width:100%;max-width:400px}
+.cm-login-page .mobile-logo{display:none;align-items:center;gap:10px;margin-bottom:24px;font-size:16px;font-weight:700;color:var(--gray-900)}
+.cm-login-page .form-header{margin-bottom:28px}
+.cm-login-page .form-header h2{font-size:26px;font-weight:800;color:var(--gray-900);letter-spacing:-.02em;margin-bottom:6px}
+.cm-login-page .form-header p{font-size:14px;color:var(--gray-500)}
+.cm-login-page .quick-login{margin-bottom:20px}
+.cm-login-page .quick-label{font-size:12px;font-weight:600;color:var(--gray-400);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.cm-login-page .quick-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.cm-login-page .quick-btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 12px;border:1px solid var(--gray-200);border-radius:var(--radius);background:#fff;font-size:13px;font-weight:600;font-family:inherit;color:var(--gray-600);cursor:pointer;transition:all var(--transition)}
+.cm-login-page .quick-btn:hover{border-color:var(--gray-400);box-shadow:var(--shadow);transform:translateY(-1px)}
+.cm-login-page .quick-btn.admin:hover{background:var(--primary-light);border-color:var(--primary);color:var(--primary)}
+.cm-login-page .quick-btn.coordinator:hover{background:var(--purple-light);border-color:var(--purple);color:var(--purple)}
+.cm-login-page .quick-btn.student:hover{background:var(--success-light);border-color:var(--success);color:var(--success)}
+.cm-login-page .divider{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.cm-login-page .divider::before,.cm-login-page .divider::after{content:'';flex:1;height:1px;background:var(--gray-200)}
+.cm-login-page .divider span{font-size:12px;color:var(--gray-400);font-weight:500;white-space:nowrap}
+.cm-login-page .form-group{margin-bottom:16px}
+.cm-login-page .form-group label{display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:6px}
+.cm-login-page .input-wrapper{display:flex;align-items:center;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius);padding:0 14px;transition:all var(--transition)}
+.cm-login-page .input-wrapper:focus-within{border-color:var(--primary);box-shadow:0 0 0 3px rgba(79,70,229,.1);background:#fff}
+.cm-login-page .input-icon{color:var(--gray-400);flex-shrink:0;margin-right:10px}
+.cm-login-page .input-wrapper input{flex:1;padding:12px 0;border:none;outline:none;background:transparent;font-size:14px;font-family:inherit;color:var(--gray-800)}
+.cm-login-page .btn-signin{width:100%;padding:13px 24px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:all var(--transition);margin-top:8px}
+.cm-login-page .btn-signin:hover{background:#4338ca;transform:translateY(-1px);box-shadow:0 4px 12px rgba(79,70,229,.4)}
+.cm-login-page .auth-switch{text-align:center;margin-top:20px;font-size:14px;color:var(--gray-500)}
+.cm-login-page .auth-switch-btn{background:none;border:none;color:var(--primary);font-weight:600;cursor:pointer;font-size:14px;font-family:inherit;transition:color var(--transition)}
+.cm-login-page .auth-switch-btn:hover{color:#4338ca}
+.cm-login-page .form-group select{flex:1;border:none;outline:none;background:transparent;font-size:14px;font-family:inherit;color:var(--gray-800);padding:12px 0}
+.cm-login-page .demo-credentials{margin-top:24px;padding:16px;background:var(--gray-50);border-radius:var(--radius);border:1px solid var(--gray-200)}
+.cm-login-page .demo-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);margin-bottom:10px}
+.cm-login-page .credentials-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.cm-login-page .cred-item{display:flex;flex-direction:column;gap:2px}
+.cm-login-page .cred-role{font-size:11px;font-weight:700;color:var(--gray-500)}
+.cm-login-page .cred-role.admin-dot{color:var(--primary)}.cred-role.coord-dot{color:var(--purple)}.cred-role.student-dot{color:var(--success)}
+.cm-login-page .cred-item span:last-child{font-size:12px;color:var(--gray-600);font-weight:500;font-family:'Courier New',monospace}
+@media(max-width:768px){.cm-login-page .brand-panel{display:none}.cm-login-page .mobile-logo{display:flex}.cm-login-page .login-wrapper{flex-direction:column;min-height:100vh;border-radius:0;max-width:100vw;width:100%}.cm-login-page .form-panel{padding:32px 24px}.cm-login-page .quick-btns{grid-template-columns:1fr}}
