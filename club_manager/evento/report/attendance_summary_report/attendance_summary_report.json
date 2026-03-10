@@ -1,0 +1,38 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-03-10 07:42:30.157236",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{}",
+ "letter_head": null,
+ "modified": "2026-03-10 08:12:57.670134",
+ "modified_by": "Administrator",
+ "module": "evento",
+ "name": "Attendance Summary Report",
+ "owner": "riyashiju2005@gmail.com",
+ "prepared_report": 0,
+ "ref_doctype": "Participation",
+ "report_name": "Attendance Summary Report",
+ "report_type": "Report Builder",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Student"
+  },
+  {
+   "role": "Admin"
+  },
+  {
+   "role": "Coordinator"
+  }
+ ],
+ "timeout": 0
+}
