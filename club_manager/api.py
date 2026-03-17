@@ -3,6 +3,7 @@
 
 import frappe
 from frappe import _
+from frappe.utils import get_datetime, formatdate, format_time
 
 
 @frappe.whitelist(allow_guest=True)
@@ -516,6 +517,114 @@ def get_my_certificates(member=None):
 	)
 	count = sum(1 for a in activities if a.get("certificate"))
 	return count
+
+
+@frappe.whitelist()
+def get_my_activity_history(member=None):
+	"""Build a timeline-style activity history for the current user.
+
+	Uses existing doctypes instead of a separate Activity doctype:
+
+	- Club Member        → type = 'clubs'
+	- Event Registration → type = 'events'
+	- Event Attendance   → type = 'attendance'
+
+	Returns a list of entries shaped for the Activity History UI:
+	[{type, text, time, date}]
+	"""
+
+	member = member or frappe.session.user
+	if not member or member == "Guest":
+		return []
+
+	activities = []
+
+	# Helper to format datetime into separate date/time strings
+	def _format_ts(ts):
+		dt = get_datetime(ts) if ts else None
+		if not dt:
+			return "", ""
+		return format_time(dt) or "", formatdate(dt) or ""
+
+	# 1) Club memberships (joined clubs)
+	clubs = frappe.get_all(
+		"Club Member",
+		filters={"member": member},
+		fields=["club", "creation"],
+		order_by="creation desc",
+		ignore_permissions=True,
+	)
+	for cm in clubs:
+		club_name = frappe.db.get_value("Club", cm.get("club"), "club_name") or cm.get("club")
+		t, d = _format_ts(cm.get("creation"))
+		activities.append(
+			{
+				"type": "clubs",
+				"text": f"Joined <strong>{club_name}</strong>",
+				"time": t,
+				"date": d,
+				"_ts": get_datetime(cm.get("creation")) if cm.get("creation") else None,
+			}
+		)
+
+	# 2) Event registrations
+	regs = frappe.get_all(
+		"Event Registration",
+		filters={"student": member},
+		fields=["event", "creation", "status"],
+		order_by="creation desc",
+		ignore_permissions=True,
+	)
+	for r in regs:
+		event_name = frappe.db.get_value("Event", r.get("event"), "event_name") or r.get("event")
+		t, d = _format_ts(r.get("creation"))
+		activities.append(
+			{
+				"type": "events",
+				"text": f"Registered for <strong>{event_name}</strong>",
+				"time": t,
+				"date": d,
+				"_ts": get_datetime(r.get("creation")) if r.get("creation") else None,
+			}
+		)
+
+	# 3) Attendance records
+	att = frappe.get_all(
+		"Event Attendance",
+		filters={"student": member},
+		fields=["event", "status", "check_in_time", "modified"],
+		order_by="modified desc",
+		ignore_permissions=True,
+	)
+	for a in att:
+		event_name = frappe.db.get_value("Event", a.get("event"), "event_name") or a.get("event")
+		status = (a.get("status") or "Present").lower()
+		if status == "present":
+			txt = "Marked present at"
+		elif status == "late":
+			txt = "Late arrival at"
+		else:
+			txt = "Absent from"
+
+		# Prefer check-in time if available, otherwise modified timestamp
+		raw_ts = a.get("check_in_time") or a.get("modified")
+		t, d = _format_ts(raw_ts)
+		activities.append(
+			{
+				"type": "attendance",
+				"text": f"{txt} <strong>{event_name}</strong>",
+				"time": t,
+				"date": d,
+				"_ts": get_datetime(raw_ts) if raw_ts else None,
+			}
+		)
+
+	# Sort by timestamp descending and strip helper field
+	activities.sort(key=lambda x: x.get("_ts") or get_datetime("1900-01-01 00:00:00"), reverse=True)
+	for a in activities:
+		a.pop("_ts", None)
+
+	return activities
 
 
 @frappe.whitelist()
