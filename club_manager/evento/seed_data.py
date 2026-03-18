@@ -46,6 +46,15 @@ def seed():
 
 def _seed_demo_users():
 	"""Create demo users for Club Manager login."""
+	original_user = frappe.session.user
+	frappe.set_user("Administrator")
+	try:
+		_do_seed_demo_users()
+	finally:
+		frappe.set_user(original_user)
+
+
+def _do_seed_demo_users():
 	for u in DEMO_USERS:
 		if frappe.db.exists("User", u["email"]):
 			doc = frappe.get_doc("User", u["email"])
