@@ -141,6 +141,7 @@ class ClubManagerApp {
 			studentRegistered: [],
 			studentClubs: [],
 			myCertificates: 0,
+			activityHistory: [],
 			selectedAttendanceEvent: null,
 			attendanceLoadedForEvent: null,
 		};
@@ -220,6 +221,9 @@ class ClubManagerApp {
 			}));
 			promises.push(frappe.call({ method: 'club_manager.api.get_my_certificates' }).then(r => {
 				this.state.myCertificates = r.message || 0;
+			}));
+			promises.push(frappe.call({ method: 'club_manager.api.get_my_activity_history' }).then(r => {
+				this.state.activityHistory = r.message || [];
 			}));
 		}
 		return Promise.all(promises).catch(err => {
@@ -1868,6 +1872,9 @@ class ClubManagerApp {
 	renderActivityHistory() {
 		const tabs = ['All', 'Clubs', 'Events', 'Attendance', 'Achievements'];
 		const typeIcons = { clubs: ICONS.layers, events: ICONS.calendar, attendance: ICONS.checkCircle, achievements: ICONS.activity };
+		const demoEmails = ['admin@college.edu','michael@college.edu','emily@college.edu','coordinator@college.edu','student@college.edu','administrator@example.com','administrator'];
+		const isDemoUser = demoEmails.includes((frappe.session.user || '').toLowerCase());
+		const activityData = isDemoUser ? DEMO_ACTIVITY_HISTORY : (this.state.activityHistory || []);
 
 		const buildTimeline = (list) => list.length ? list.map(a => `
 			<div class="timeline-item">
@@ -1880,7 +1887,7 @@ class ClubManagerApp {
 					<div class="timeline-time">${ICONS.clock} ${a.time} &middot; ${a.date}</div>
 				</div>
 			</div>
-		`).join('') : `<div class="no-results"><p>No activities found</p></div>`;
+		`).join('') : `<div class="no-results"><div class="empty-state">${ICONS.activity}<p>No activity history yet</p><span style="color:var(--gray-400);font-size:13px">Join clubs and register for events to see your activity here</span></div></div>`;
 
 		this.mainContent.off().html(`
 			<div class="page-header">
@@ -1890,7 +1897,7 @@ class ClubManagerApp {
 				${tabs.map(t => `<button class="filter-tab${t==='All'?' active':''}" data-tab="${t.toLowerCase()}">${t}</button>`).join('')}
 			</div>
 			<div class="timeline" id="activity-timeline">
-				${buildTimeline(DEMO_ACTIVITY_HISTORY)}
+				${buildTimeline(activityData)}
 			</div>
 		`);
 
@@ -1898,7 +1905,7 @@ class ClubManagerApp {
 			const tab = $(this).data('tab');
 			$('.filter-tab').removeClass('active');
 			$(this).addClass('active');
-			const filtered = tab === 'all' ? DEMO_ACTIVITY_HISTORY : DEMO_ACTIVITY_HISTORY.filter(a => a.type === tab);
+			const filtered = tab === 'all' ? activityData : activityData.filter(a => a.type === tab);
 			$('#activity-timeline').html(buildTimeline(filtered));
 		});
 	}
